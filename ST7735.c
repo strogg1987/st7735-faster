@@ -80,7 +80,7 @@ void ST7735_Select()
 {
     //HAL_GPIO_WritePin(CS_PORT, CS_PIN, GPIO_PIN_RESET);
     //LL_GPIO_ResetOutputPin(GPIOA, LL_GPIO_PIN_4);
-	CLEAR_BIT(GPIOA->ODR,GPIO_ODR_ODR4);
+	CLEAR_BIT(CS_PORT->ODR,CS_PIN);
 
 }
 
@@ -89,7 +89,7 @@ void ST7735_Unselect()
     //HAL_GPIO_WritePin(CS_PORT, CS_PIN, GPIO_PIN_SET);
 
 	//LL_GPIO_SetOutputPin(CS_PORT, LL_GPIO_PIN_4);
-	SET_BIT(GPIOA->ODR,GPIO_ODR_ODR4);
+	SET_BIT(CS_PORT->ODR,CS_PIN);
 }
 
 void ST7735_Reset()
@@ -98,18 +98,18 @@ void ST7735_Reset()
     //HAL_Delay(5);
     //HAL_GPIO_WritePin(RST_PORT, RST_PIN, GPIO_PIN_SET);
 	//LL_GPIO_ResetOutputPin(RST_PORT, LL_GPIO_PIN_3);
-	CLEAR_BIT(GPIOA->ODR,GPIO_ODR_ODR3);
+	CLEAR_BIT(RST_PORT->ODR,RST_PIN);
 	//LL_mDelay(5);
 	HAL_Delay(5);
 	//LL_GPIO_SetOutputPin(RST_PORT, LL_GPIO_PIN_3);
-	SET_BIT(GPIOA->ODR,GPIO_ODR_ODR3);
+	SET_BIT(RST_PORT->ODR,RST_PIN);
 }
 
   void ST7735_WriteCommand(uint8_t cmd)
   {
     //HAL_GPIO_WritePin(DC_PORT, DC_PIN, GPIO_PIN_RESET);
 	//LL_GPIO_ResetOutputPin(GPIOA, LL_GPIO_PIN_2);
-	  CLEAR_BIT(GPIOA->ODR,GPIO_ODR_ODR2);
+	  CLEAR_BIT(DC_PORT->ODR,DC_PIN);
     HAL_SPI_Transmit(&ST7735_SPI_PORT, &cmd, 1, HAL_MAX_DELAY);
 
 }
@@ -118,7 +118,7 @@ void ST7735_WriteData(uint8_t* buff, size_t buff_size)
 {
 	//LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_2);
     //HAL_GPIO_WritePin(DC_PORT, DC_PIN, GPIO_PIN_SET);
-	SET_BIT(GPIOA->ODR,GPIO_ODR_ODR2);
+	SET_BIT(DC_PORT->ODR,DC_PIN);
     HAL_SPI_Transmit(&ST7735_SPI_PORT, buff, buff_size, HAL_MAX_DELAY);
 
 }
@@ -326,7 +326,7 @@ void ST7735_FillRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16
     uint8_t data[] = { color >> 8, color & 0xFF  };
     //HAL_GPIO_WritePin(DC_PORT, DC_PIN, GPIO_PIN_SET);
     //LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_2);
-    SET_BIT(GPIOA->ODR,GPIO_ODR_ODR2);
+    SET_BIT(DC_PORT->ODR,DC_PIN);
     for(y = h; y > 0; y--) {
         for(x = w; x > 0; x--) {
             HAL_SPI_Transmit(&ST7735_SPI_PORT, data, sizeof(data), HAL_MAX_DELAY);
