@@ -1,5 +1,7 @@
 # st7735-faster
-based on https://github.com/afiskon/stm32-st7735 HAL GPIO functions replaced with register operations
+based on https://github.com/afiskon/stm32-st7735 
+
+HAL GPIO functions replaced with register operations
 
 CS GPIOA GPIO_PIN_4
 
