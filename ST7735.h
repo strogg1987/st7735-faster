@@ -12,11 +12,11 @@ extern SPI_HandleTypeDef hspi1;
 
 /****** PIN DEFINES ******/
 #define CS_PORT GPIOA
-#define CS_PIN  GPIO_PIN_4
+#define CS_PIN  GPIO_ODR_ODR4
 #define DC_PORT GPIOA
-#define DC_PIN  GPIO_PIN_2
+#define DC_PIN  GPIO_ODR_ODR2
 #define RST_PORT GPIOA
-#define RST_PIN  GPIO_PIN_3
+#define RST_PIN  GPIO_ODR_ODR3
 
 /****** TFT DEFINES ******/
 //#define ST7735_IS_160X80 1
